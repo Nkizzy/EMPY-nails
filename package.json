@@ -1,0 +1,17 @@
+{
+  "name": "empy-nails-website",
+  "version": "1.0.0",
+  "description": "A modern, elegant nail salon website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=/",
+    "build": "echo 'Static site - no build required'",
+    "preview": "live-server --port=3000 --open=/"
+  },
+  "keywords": ["nail-salon", "website", "static-site"],
+  "author": "EMPY Nails",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+} 
