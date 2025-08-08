@@ -122,6 +122,7 @@ async function loadGalleryImages() {
                 };
                 
                 img.onerror = () => {
+                    console.log(`Failed to load gallery image: ${src}`);
                     totalAttempts++;
                     checkIfDone();
                 };
@@ -134,6 +135,7 @@ async function loadGalleryImages() {
             if (totalAttempts >= galleryImages.length * extensions.length) {
                 console.log(`Gallery: Total attempts: ${totalAttempts}, Loaded images: ${loadedImages.length}`);
                 console.log('Gallery images found:', loadedImages.map(img => img.image));
+                console.log('Gallery images attempted:', galleryImages);
                 
                 if (loadedImages.length > 0) {
                     // Use loaded gallery images
@@ -173,9 +175,11 @@ async function loadGalleryImages() {
 function populateGallery() {
     if (!galleryGrid) return;
     
+    console.log('Populating gallery with data:', galleryData);
     galleryGrid.innerHTML = '';
     
-    galleryData.forEach(item => {
+    galleryData.forEach((item, index) => {
+        console.log(`Creating gallery item ${index + 1}:`, item);
         const galleryItem = document.createElement('div');
         galleryItem.className = 'gallery-item';
         galleryItem.setAttribute('data-id', item.id);
@@ -194,6 +198,8 @@ function populateGallery() {
         galleryItem.addEventListener('click', () => openLightbox(item));
         galleryGrid.appendChild(galleryItem);
     });
+    
+    console.log(`Gallery populated with ${galleryData.length} items`);
 }
 
 // Lightbox functionality
