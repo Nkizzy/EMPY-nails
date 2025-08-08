@@ -77,51 +77,96 @@ function smoothScrollTo(targetId) {
     }
 }
 
-// Gallery data - sample nail art images
-const galleryData = [
-    {
-        id: 1,
-        title: 'Gel Nail Art',
-        description: 'Beautiful pink gel nails with floral design',
-        image: './assets/sample nail.jpg',
-        category: 'gel'
-    },
-    {
-        id: 2,
-        title: 'Acrylic Extensions',
-        description: 'Long acrylic nails with ombre effect',
-        image: './assets/sample nail 2.jpg',
-        category: 'acrylic'
-    },
-    {
-        id: 3,
-        title: 'French Manicure',
-        description: 'Classic French manicure with white tips',
-        image: './assets/sample nail.jpg',
-        category: 'manicure'
-    },
-    {
-        id: 4,
-        title: 'Nail Art Design',
-        description: 'Colorful geometric nail art pattern',
-        image: './assets/sample nail 2.jpg',
-        category: 'art'
-    },
-    {
-        id: 5,
-        title: 'Gel Polish',
-        description: 'Shimmering gel polish in rose gold',
-        image: './assets/sample nail.jpg',
-        category: 'gel'
-    },
-    {
-        id: 6,
-        title: '3D Nail Art',
-        description: '3D flower decorations on acrylic nails',
-        image: './assets/sample nail 2.jpg',
-        category: 'acrylic'
+// Gallery data - will be populated dynamically from Gallery folder
+let galleryData = [];
+
+// Function to load gallery images from Gallery folder
+async function loadGalleryImages() {
+    try {
+        // Look for images named image1, image2, etc. up to image20
+        const galleryImages = [];
+        for (let i = 1; i <= 20; i++) {
+            galleryImages.push(`./assets/Gallery/image${i}.jpeg`);
+        }
+        
+        let loadedImages = [];
+        let totalAttempts = 0;
+        
+        // Try to load each image with multiple extensions
+        const extensions = ['jpeg', 'jpg', 'png', 'webp'];
+        
+        galleryImages.forEach((baseSrc, index) => {
+            const baseName = baseSrc.replace('.jpeg', '');
+            let imageLoaded = false;
+            
+            extensions.forEach(ext => {
+                if (imageLoaded) return; // Skip if already loaded
+                
+                const src = `${baseName}.${ext}`;
+                const img = new Image();
+                
+                img.onload = () => {
+                    if (!imageLoaded) {
+                        loadedImages.push({
+                            id: loadedImages.length + 1,
+                            title: `Nail Art ${loadedImages.length + 1}`,
+                            description: 'Beautiful nail art design',
+                            image: src,
+                            category: 'nail-art'
+                        });
+                        imageLoaded = true;
+                        console.log(`Successfully loaded gallery image: ${src}`);
+                    }
+                    totalAttempts++;
+                    checkIfDone();
+                };
+                
+                img.onerror = () => {
+                    totalAttempts++;
+                    checkIfDone();
+                };
+                
+                img.src = src;
+            });
+        });
+        
+        function checkIfDone() {
+            if (totalAttempts >= galleryImages.length * extensions.length) {
+                console.log(`Gallery: Total attempts: ${totalAttempts}, Loaded images: ${loadedImages.length}`);
+                
+                if (loadedImages.length > 0) {
+                    // Use loaded gallery images
+                    galleryData = loadedImages;
+                    populateGallery();
+                    console.log(`Successfully loaded ${loadedImages.length} gallery images`);
+                } else {
+                    // Fallback to original images
+                    galleryData = [
+                        {
+                            id: 1,
+                            title: 'Gel Nail Art',
+                            description: 'Beautiful pink gel nails with floral design',
+                            image: './assets/sample nail.jpg',
+                            category: 'gel'
+                        },
+                        {
+                            id: 2,
+                            title: 'Acrylic Extensions',
+                            description: 'Long acrylic nails with ombre effect',
+                            image: './assets/sample nail 2.jpg',
+                            category: 'acrylic'
+                        }
+                    ];
+                    populateGallery();
+                    console.log('No gallery images found, using fallback images');
+                }
+            }
+        }
+        
+    } catch (error) {
+        console.log('Error loading gallery images:', error);
     }
-];
+}
 
 // Populate gallery
 function populateGallery() {
@@ -386,6 +431,39 @@ function addCSSAnimations() {
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
         
+        /* Mobile responsive gallery overlay */
+        @media (max-width: 768px) {
+            .gallery-overlay {
+                padding: 0.8rem;
+                border-radius: 10px;
+            }
+            
+            .gallery-overlay h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .gallery-overlay p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-overlay {
+                padding: 0.6rem;
+                border-radius: 8px;
+            }
+            
+            .gallery-overlay h3 {
+                font-size: 1rem;
+                margin-bottom: 0.2rem;
+            }
+            
+            .gallery-overlay p {
+                font-size: 0.8rem;
+            }
+        }
+        
         .notification-content {
             display: flex;
             justify-content: space-between;
@@ -404,6 +482,111 @@ function addCSSAnimations() {
         }
     `;
     document.head.appendChild(style);
+}
+
+// Function to load images from scroll folder
+async function loadScrollImages() {
+    try {
+        const scrollContainer = document.querySelector('.scrolling-nails-container');
+        if (!scrollContainer) return;
+        
+        // Clear existing content
+        scrollContainer.innerHTML = '';
+        
+        // Look for images named image1, image2, etc. up to image20
+        const scrollImages = [];
+        for (let i = 1; i <= 20; i++) {
+            scrollImages.push(`./assets/scroll/image${i}.jpg`);
+        }
+        
+        let loadedImages = [];
+        let totalAttempts = 0;
+        
+        // Try to load each image with multiple extensions
+        const extensions = ['jpeg', 'jpg', 'png', 'webp'];
+        
+        scrollImages.forEach((baseSrc, index) => {
+            const baseName = baseSrc.replace('.jpg', '');
+            let imageLoaded = false;
+            
+            extensions.forEach(ext => {
+                if (imageLoaded) return; // Skip if already loaded
+                
+                const src = `${baseName}.${ext}`;
+                const img = new Image();
+                
+                img.onload = () => {
+                    if (!imageLoaded) {
+                        loadedImages.push(src);
+                        imageLoaded = true;
+                        console.log(`Successfully loaded: ${src}`);
+                    }
+                    totalAttempts++;
+                    checkIfDone();
+                };
+                
+                img.onerror = () => {
+                    totalAttempts++;
+                    checkIfDone();
+                };
+                
+                img.src = src;
+            });
+        });
+        
+        function checkIfDone() {
+            if (totalAttempts >= scrollImages.length * extensions.length) {
+                console.log(`Total attempts: ${totalAttempts}, Loaded images: ${loadedImages.length}`);
+                console.log('Loaded images:', loadedImages);
+                
+                if (loadedImages.length > 0) {
+                    // Use loaded scroll images with no consecutive duplicates
+                    const shuffledImages = [...loadedImages];
+                    
+                    // Create a sequence that prevents consecutive duplicates
+                    const sequence = [];
+                    for (let i = 0; i < 6; i++) { // Create 6 sets for smooth looping
+                        // Shuffle the array for each set to ensure variety
+                        const shuffled = [...shuffledImages].sort(() => Math.random() - 0.5);
+                        sequence.push(...shuffled);
+                    }
+                    
+                    sequence.forEach(src => {
+                        const nailDiv = document.createElement('div');
+                        nailDiv.className = 'scrolling-nail';
+                        const img = document.createElement('img');
+                        img.src = src;
+                        img.alt = 'Nail Art Sample';
+                        nailDiv.appendChild(img);
+                        scrollContainer.appendChild(nailDiv);
+                    });
+                    console.log(`Successfully loaded ${loadedImages.length} images from scroll folder`);
+                } else {
+                    // Fallback to original images
+                    const fallbackImages = [
+                        './assets/sample nail.jpg',
+                        './assets/sample nail 2.jpg'
+                    ];
+                    
+                    fallbackImages.forEach(src => {
+                        for (let i = 0; i < 5; i++) {
+                            const nailDiv = document.createElement('div');
+                            nailDiv.className = 'scrolling-nail';
+                            const img = document.createElement('img');
+                            img.src = src;
+                            img.alt = 'Nail Art Sample';
+                            nailDiv.appendChild(img);
+                            scrollContainer.appendChild(nailDiv);
+                        }
+                    });
+                    console.log('No scroll images found, using fallback images');
+                }
+            }
+        }
+        
+    } catch (error) {
+        console.log('Error loading scroll images:', error);
+    }
 }
 
 // Initialize everything when DOM is loaded
@@ -426,19 +609,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const animatedElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .scale-in');
     animatedElements.forEach(el => observer.observe(el));
     
-    // Scroll to top on page load
-    window.scrollTo(0, 0);
-    
-    // Clear any hash from URL
+    // Handle hash navigation on page load
     if (window.location.hash) {
-        history.replaceState(null, null, window.location.pathname);
+        const targetId = window.location.hash;
+        // Wait a bit for the page to fully load, then scroll to the target
+        setTimeout(() => {
+            smoothScrollTo(targetId);
+        }, 100);
+    } else {
+        // Always scroll to top on page load
+        window.scrollTo(0, 0);
     }
     
     // Initialize gallery
-    populateGallery();
+    loadGalleryImages();
+    
+    // Load scroll images
+    loadScrollImages();
     
     // Setup animations
     setupAnimations();
+    
+    // Show SPA popup only on first visit
+    showSPAPopup();
+    
+    // TEMPORARILY DISABLED - Test popup code removed
+    // Test button event listener
+    const testButton = document.getElementById('test-popup');
+    if (testButton) {
+        testButton.addEventListener('click', () => {
+            showSPAPopup();
+        });
+    }
     
     // Add CSS animations
     addCSSAnimations();
@@ -461,9 +663,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (navLinks && navLinks.length > 0) {
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                
+                // Check if this is a cross-page navigation (contains index.html)
+                if (href.includes('index.html')) {
+                    // Allow default navigation for cross-page links
+                    return;
+                }
+                
+                // For same-page navigation, prevent default and smooth scroll
                 e.preventDefault();
-                const targetId = link.getAttribute('href');
-                smoothScrollTo(targetId);
+                smoothScrollTo(href);
                 closeMobileMenu();
             });
         });
@@ -620,7 +830,7 @@ function ensureScrollingAnimation() {
         // Force a reflow to ensure animation starts
         scrollingContainer.style.animation = 'none';
         scrollingContainer.offsetHeight; // Trigger reflow
-        scrollingContainer.style.animation = 'scrollNails 40s linear infinite';
+        scrollingContainer.style.animation = 'scrollNails 120s linear infinite';
         
         // Also ensure images are loaded and prioritized
         const images = scrollingContainer.querySelectorAll('img');
@@ -649,21 +859,101 @@ function ensureScrollingAnimation() {
         setTimeout(() => {
             scrollingContainer.style.animation = 'none';
             scrollingContainer.offsetHeight;
-            scrollingContainer.style.animation = 'scrollNails 40s linear infinite';
+            scrollingContainer.style.animation = 'scrollNails 120s linear infinite';
         }, 100);
     }
 }
 
-// Ensure page starts at top when loaded
-window.addEventListener('load', function() {
-    // Force scroll to top
-    window.scrollTo(0, 0);
+// Function to show SPA popup only on first visit
+function showSPAPopup() {
+    console.log('showSPAPopup function called - TEMPORARILY DISABLED');
     
-    // Clear any hash from URL
-    if (window.location.hash) {
-        history.replaceState(null, null, window.location.pathname);
+    // TEMPORARILY DISABLED - Return early to prevent popup from showing
+    return;
+    
+    // Check if user has seen the popup before
+    if (localStorage.getItem('spa-popup-shown')) {
+        console.log('Popup already shown before, not showing');
+        return; // Don't show if already seen
     }
-});
+    
+    // Check if this is a direct visit (not from services page)
+    if (document.referrer && document.referrer.includes('services.html')) {
+        console.log('Coming from services page, not showing popup');
+        return; // Don't show if coming from services page
+    }
+    
+    const spaPopup = document.getElementById('spa-popup');
+    const spaPopupClose = document.getElementById('spa-popup-close');
+    
+    console.log('spaPopup element:', spaPopup);
+    console.log('spaPopupClose element:', spaPopupClose);
+    
+    if (spaPopup && spaPopupClose) {
+        console.log('Both elements found, setting up popup');
+        
+        // Show popup after a short delay
+        setTimeout(() => {
+            console.log('Showing popup now');
+            spaPopup.style.opacity = '1';
+            spaPopup.style.visibility = 'visible';
+            const popupContent = spaPopup.querySelector('div');
+            if (popupContent) {
+                popupContent.style.transform = 'scale(1)';
+            }
+        }, 1000);
+        
+        // Close popup functionality
+        spaPopupClose.addEventListener('click', () => {
+            console.log('Close button clicked');
+            spaPopup.style.opacity = '0';
+            spaPopup.style.visibility = 'hidden';
+            const popupContent = spaPopup.querySelector('div');
+            if (popupContent) {
+                popupContent.style.transform = 'scale(0.8)';
+            }
+            localStorage.setItem('spa-popup-shown', 'true');
+        });
+        
+        // Close popup when clicking outside
+        spaPopup.addEventListener('click', (e) => {
+            if (e.target === spaPopup) {
+                console.log('Clicked outside popup');
+                spaPopup.style.opacity = '0';
+                spaPopup.style.visibility = 'hidden';
+                const popupContent = spaPopup.querySelector('div');
+                if (popupContent) {
+                    popupContent.style.transform = 'scale(0.8)';
+                }
+                localStorage.setItem('spa-popup-shown', 'true');
+            }
+        });
+        
+        // Close popup with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && spaPopup.style.visibility === 'visible') {
+                console.log('Escape key pressed');
+                spaPopup.style.opacity = '0';
+                spaPopup.style.visibility = 'hidden';
+                const popupContent = spaPopup.querySelector('div');
+                if (popupContent) {
+                    popupContent.style.transform = 'scale(0.8)';
+                }
+                localStorage.setItem('spa-popup-shown', 'true');
+            }
+        });
+    } else {
+        console.log('Popup elements not found');
+    }
+}
+
+    // Ensure page starts at top when loaded
+    window.addEventListener('load', function() {
+        // Always scroll to top unless there's a specific hash
+        if (!window.location.hash || window.location.hash === '#home') {
+            window.scrollTo(0, 0);
+        }
+    });
 
     // Apply throttling to scroll events
     window.addEventListener('scroll', throttle(handleHeaderScroll, 16));
