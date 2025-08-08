@@ -86,7 +86,7 @@ async function loadGalleryImages() {
         // Look for images named image1, image2, etc. up to image20
         const galleryImages = [];
         for (let i = 1; i <= 20; i++) {
-            galleryImages.push(`./assets/Gallery/image${i}.jpeg`);
+            galleryImages.push(`./assets/gallery/image${i}.jpeg`);
         }
         
         let loadedImages = [];
@@ -133,6 +133,7 @@ async function loadGalleryImages() {
         function checkIfDone() {
             if (totalAttempts >= galleryImages.length * extensions.length) {
                 console.log(`Gallery: Total attempts: ${totalAttempts}, Loaded images: ${loadedImages.length}`);
+                console.log('Gallery images found:', loadedImages.map(img => img.image));
                 
                 if (loadedImages.length > 0) {
                     // Use loaded gallery images
@@ -183,7 +184,7 @@ function populateGallery() {
         galleryItem.setAttribute('data-image', item.image);
         
         galleryItem.innerHTML = `
-            <img src="${item.image}" alt="${item.title}" loading="lazy">
+            <img src="${item.image}" alt="${item.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="gallery-overlay">
                 <h3>${item.title}</h3>
                 <p>${item.description}</p>
@@ -415,6 +416,11 @@ function addCSSAnimations() {
         
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
+        }
+        
+        .gallery-item img[style*="display: none"] + .gallery-overlay {
+            opacity: 1;
+            background: linear-gradient(135deg, #ff7ba7, #d45579);
         }
         
         .gallery-overlay h3 {
