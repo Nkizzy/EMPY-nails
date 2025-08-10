@@ -133,15 +133,13 @@ async function loadGalleryImages() {
         
         function checkIfDone() {
             if (totalAttempts >= galleryImages.length * extensions.length) {
-                console.log(`Gallery: Total attempts: ${totalAttempts}, Loaded images: ${loadedImages.length}`);
-                console.log('Gallery images found:', loadedImages.map(img => img.image));
-                console.log('Gallery images attempted:', galleryImages);
+                
                 
                 if (loadedImages.length > 0) {
                     // Use loaded gallery images
                     galleryData = loadedImages;
                     populateGallery();
-                    console.log(`Successfully loaded ${loadedImages.length} gallery images`);
+                    
                 } else {
                     // Fallback to original images
                     galleryData = [
@@ -161,13 +159,13 @@ async function loadGalleryImages() {
                         }
                     ];
                     populateGallery();
-                    console.log('No gallery images found, using fallback images');
+                    
                 }
             }
         }
         
     } catch (error) {
-        console.log('Error loading gallery images:', error);
+        
     }
 }
 
@@ -175,11 +173,11 @@ async function loadGalleryImages() {
 function populateGallery() {
     if (!galleryGrid) return;
     
-    console.log('Populating gallery with data:', galleryData);
+    
     galleryGrid.innerHTML = '';
     
     galleryData.forEach((item, index) => {
-        console.log(`Creating gallery item ${index + 1}:`, item);
+        
         const galleryItem = document.createElement('div');
         galleryItem.className = 'gallery-item';
         galleryItem.setAttribute('data-id', item.id);
@@ -199,7 +197,7 @@ function populateGallery() {
         galleryGrid.appendChild(galleryItem);
     });
     
-    console.log(`Gallery populated with ${galleryData.length} items`);
+    
 }
 
 // Lightbox functionality
@@ -421,7 +419,7 @@ function addCSSAnimations() {
         }
         
         .gallery-item:hover .gallery-overlay {
-            opacity: 1;
+            opacity: 0;
         }
         
         .gallery-item img[style*="display: none"] + .gallery-overlay {
@@ -531,7 +529,7 @@ async function loadScrollImages() {
                     if (!imageLoaded) {
                         loadedImages.push(src);
                         imageLoaded = true;
-                        console.log(`Successfully loaded: ${src}`);
+                        
                     }
                     totalAttempts++;
                     checkIfDone();
@@ -548,8 +546,7 @@ async function loadScrollImages() {
         
         function checkIfDone() {
             if (totalAttempts >= scrollImages.length * extensions.length) {
-                console.log(`Total attempts: ${totalAttempts}, Loaded images: ${loadedImages.length}`);
-                console.log('Loaded images:', loadedImages);
+                
                 
                 if (loadedImages.length > 0) {
                     // Use loaded scroll images with no consecutive duplicates
@@ -572,7 +569,7 @@ async function loadScrollImages() {
                         nailDiv.appendChild(img);
                         scrollContainer.appendChild(nailDiv);
                     });
-                    console.log(`Successfully loaded ${loadedImages.length} images from scroll folder`);
+                    
                 } else {
                     // Fallback to original images
                     const fallbackImages = [
@@ -591,13 +588,13 @@ async function loadScrollImages() {
                             scrollContainer.appendChild(nailDiv);
                         }
                     });
-                    console.log('No scroll images found, using fallback images');
+                    
                 }
             }
         }
         
     } catch (error) {
-        console.log('Error loading scroll images:', error);
+        
     }
 }
 
@@ -621,17 +618,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const animatedElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .scale-in');
     animatedElements.forEach(el => observer.observe(el));
     
-    // Handle hash navigation on page load
-    if (window.location.hash) {
-        const targetId = window.location.hash;
-        // Wait a bit for the page to fully load, then scroll to the target
-        setTimeout(() => {
-            smoothScrollTo(targetId);
-        }, 100);
-    } else {
-        // Always scroll to top on page load
-        window.scrollTo(0, 0);
-    }
+    // Always scroll to top on page load - no hash navigation
+    window.scrollTo(0, 0);
     
     // Initialize gallery
     loadGalleryImages();
@@ -642,17 +630,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Setup animations
     setupAnimations();
     
-    // Show SPA popup only on first visit
-    showSPAPopup();
+
     
-    // TEMPORARILY DISABLED - Test popup code removed
-    // Test button event listener
-    const testButton = document.getElementById('test-popup');
-    if (testButton) {
-        testButton.addEventListener('click', () => {
-            showSPAPopup();
-        });
-    }
+
     
     // Add CSS animations
     addCSSAnimations();
@@ -855,7 +835,7 @@ function ensureScrollingAnimation() {
                     img.style.visibility = 'visible';
                 };
                 newImg.onerror = () => {
-                    console.log('Image failed to load:', img.src);
+                    
                     img.style.opacity = '0';
                 };
                 newImg.src = img.src;
@@ -876,98 +856,31 @@ function ensureScrollingAnimation() {
     }
 }
 
-// Function to show SPA popup only on first visit
-function showSPAPopup() {
-    console.log('showSPAPopup function called - TEMPORARILY DISABLED');
-    
-    // TEMPORARILY DISABLED - Return early to prevent popup from showing
-    return;
-    
-    // Check if user has seen the popup before
-    if (localStorage.getItem('spa-popup-shown')) {
-        console.log('Popup already shown before, not showing');
-        return; // Don't show if already seen
-    }
-    
-    // Check if this is a direct visit (not from services page)
-    if (document.referrer && document.referrer.includes('services.html')) {
-        console.log('Coming from services page, not showing popup');
-        return; // Don't show if coming from services page
-    }
-    
-    const spaPopup = document.getElementById('spa-popup');
-    const spaPopupClose = document.getElementById('spa-popup-close');
-    
-    console.log('spaPopup element:', spaPopup);
-    console.log('spaPopupClose element:', spaPopupClose);
-    
-    if (spaPopup && spaPopupClose) {
-        console.log('Both elements found, setting up popup');
-        
-        // Show popup after a short delay
-        setTimeout(() => {
-            console.log('Showing popup now');
-            spaPopup.style.opacity = '1';
-            spaPopup.style.visibility = 'visible';
-            const popupContent = spaPopup.querySelector('div');
-            if (popupContent) {
-                popupContent.style.transform = 'scale(1)';
-            }
-        }, 1000);
-        
-        // Close popup functionality
-        spaPopupClose.addEventListener('click', () => {
-            console.log('Close button clicked');
-            spaPopup.style.opacity = '0';
-            spaPopup.style.visibility = 'hidden';
-            const popupContent = spaPopup.querySelector('div');
-            if (popupContent) {
-                popupContent.style.transform = 'scale(0.8)';
-            }
-            localStorage.setItem('spa-popup-shown', 'true');
-        });
-        
-        // Close popup when clicking outside
-        spaPopup.addEventListener('click', (e) => {
-            if (e.target === spaPopup) {
-                console.log('Clicked outside popup');
-                spaPopup.style.opacity = '0';
-                spaPopup.style.visibility = 'hidden';
-                const popupContent = spaPopup.querySelector('div');
-                if (popupContent) {
-                    popupContent.style.transform = 'scale(0.8)';
-                }
-                localStorage.setItem('spa-popup-shown', 'true');
-            }
-        });
-        
-        // Close popup with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && spaPopup.style.visibility === 'visible') {
-                console.log('Escape key pressed');
-                spaPopup.style.opacity = '0';
-                spaPopup.style.visibility = 'hidden';
-                const popupContent = spaPopup.querySelector('div');
-                if (popupContent) {
-                    popupContent.style.transform = 'scale(0.8)';
-                }
-                localStorage.setItem('spa-popup-shown', 'true');
-            }
-        });
-    } else {
-        console.log('Popup elements not found');
-    }
-}
 
+
+    // Set current year in footer
+    const currentYearElement = document.getElementById('current-year');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
+    
+
+    
     // Ensure page starts at top when loaded
     window.addEventListener('load', function() {
-        // Always scroll to top unless there's a specific hash
-        if (!window.location.hash || window.location.hash === '#home') {
-            window.scrollTo(0, 0);
-        }
+        // Always scroll to top on page load/reload
+        window.scrollTo(0, 0);
+    });
+    
+    // Also ensure page starts at top when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Scroll to top immediately when DOM is ready
+        window.scrollTo(0, 0);
     });
 
     // Apply throttling to scroll events
     window.addEventListener('scroll', throttle(handleHeaderScroll, 16));
+    
+
     
  
