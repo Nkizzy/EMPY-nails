@@ -1,0 +1,10 @@
+[33m655517a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m Fix hero background visibility and z-index stacking issues
+[33mc4311a4[m Fix image loading issues - correct sample nail image references
+[33mc7a8698[m Update script.js and styles.css
+[33m4ae70fc[m Fix hero section display and reduce image count - Fixed mobile scrolling breaking hero layout, increased hero-content z-index to 10, reduced gallery and scroll images from 20 to 10, improved mobile scroll positioning and timing
+[33m164250f[m Fix mobile scrolling images with robust JavaScript fallback - Force mobile devices to use JavaScript scrolling instead of problematic CSS animations, ensures images stay visible and scroll continuously on all mobile devices
+[33md8dade3[m Fix mobile scrolling issues, improve hero section layout, and update award text - Mobile sections now scroll properly with main page, hero title increased to 6.5rem, reduced subtitle spacing, updated second award to 'Voted BusinessRate Best of 2024'
+[33mc0aa319[m Fix horizontal scrolling on mobile devices - prevent hero image from showing behind content
+[33m6fcbb13[m Update EMPY Nails website with improved mobile layout, larger award image, clickable phone numbers, and various UI enhancements
+[33m89d70e3[m Update testimonials section: reorganize review order, switch D'Mitree and Lauren positions, clean up assets
+[33m2e99b1d[m Add debugging and fix gallery grid layout - set fixed 3 columns and add console logs

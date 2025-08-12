@@ -224,13 +224,13 @@ p {
 /* Hero Section */
 .hero {
     position: fixed;
-    top: 0;
+    top: 80px;
     left: 0;
     width: 100vw;
-    height: 100vh;
-    background: linear-gradient(135deg, #ff7ba7, #d45579), url('./assets/salon.jpg');
+    height: calc(100vh - 80px);
+    background: url('./assets/salon.jpg');
     background-size: cover;
-    background-position: center 40%;
+    background-position: center center;
     filter: brightness(1.3);
     display: flex;
     align-items: center;
@@ -240,6 +240,7 @@ p {
     overflow: hidden;
     z-index: 1;
     max-width: 100vw;
+    background-attachment: fixed;
 }
 
 .hero-overlay {
@@ -254,27 +255,27 @@ p {
 /* Scrolling nail images */
 .scrolling-nails {
     position: absolute;
-    top: 0;
+    top: 20px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 40px);
     overflow: hidden;
-    z-index: 0;
+    z-index: 50;
     pointer-events: none;
 }
 
 .scrolling-nails-container {
     display: flex;
     gap: 3rem;
-    animation: scrollNails 60s linear infinite;
+    animation: scrollNails 120s linear infinite;
     width: max-content;
     align-items: center;
     height: 100%;
     will-change: transform;
     position: relative;
-    -webkit-animation: scrollNails 60s linear infinite;
-    -moz-animation: scrollNails 60s linear infinite;
-    -o-animation: scrollNails 60s linear infinite;
+    -webkit-animation: scrollNails 120s linear infinite;
+    -moz-animation: scrollNails 120s linear infinite;
+    -o-animation: scrollNails 120s linear infinite;
 }
 
 .scrolling-nail {
@@ -341,7 +342,7 @@ p {
 
 .hero-content {
     position: relative;
-    z-index: 10;
+    z-index: 100;
     max-width: 600px;
     padding: 1.5rem 2rem;
     /* From https://css.glass */
@@ -366,7 +367,7 @@ p {
 }
 
 .hero-title {
-    font-size: 6.5rem;
+    font-size: 4.5rem;
     margin-bottom: 1rem;
     animation: fadeInUp 1s ease;
     color: white;
@@ -456,6 +457,7 @@ p {
     width: 100%;
     position: relative;
     z-index: 0;
+    background: transparent;
 }
 
 /* Section Styles */
@@ -1404,21 +1406,18 @@ section {
     
     /* Fix section scrolling issues on mobile */
     section {
-        overflow: visible !important;
-        height: auto !important;
-        max-height: none !important;
+        height: auto;
+        max-height: none;
     }
     
     .services, .gallery, .testimonials, .location {
-        overflow: visible !important;
-        height: auto !important;
-        max-height: none !important;
+        height: auto;
+        max-height: none;
     }
     
     .services-grid, .gallery-grid, .testimonials-grid, .location-content {
-        overflow: visible !important;
-        height: auto !important;
-        max-height: none !important;
+        height: auto;
+        max-height: none;
     }
     .nav-menu {
         position: fixed;
@@ -1485,22 +1484,22 @@ section {
     }
     
     .hero-content {
-        margin-top: -30vh;
+        margin-top: -40vh;
         z-index: 10;
     }
     
     .scrolling-nails {
-        top: 150px;
-        width: 100vw;
-        max-width: 100vw;
+        top: 120px;
+        width: 100%;
+        max-width: 100%;
         overflow: hidden;
     }
     
     .scrolling-nails-container {
-        animation: scrollNails 30s linear infinite;
-        -webkit-animation: scrollNails 30s linear infinite;
-        -moz-animation: scrollNails 30s linear infinite;
-        -o-animation: scrollNails 30s linear infinite;
+        animation: scrollNails 60s linear infinite;
+        -webkit-animation: scrollNails 60s linear infinite;
+        -moz-animation: scrollNails 60s linear infinite;
+        -o-animation: scrollNails 60s linear infinite;
         animation-play-state: running;
         -webkit-animation-play-state: running;
     }
@@ -1597,9 +1596,8 @@ section {
 
     section {
         padding: 3rem 0;
-        overflow: visible !important;
-        height: auto !important;
-        max-height: none !important;
+        height: auto;
+        max-height: none;
     }
 }
 
