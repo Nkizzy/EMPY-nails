@@ -858,7 +858,10 @@ function ensureScrollingAnimation() {
         setTimeout(() => {
             scrollingContainer.style.animation = 'none';
             scrollingContainer.offsetHeight;
-            scrollingContainer.style.animation = 'scrollNails 120s linear infinite';
+            // Use faster timing for mobile
+            const isMobile = window.innerWidth <= 768;
+            const animationDuration = isMobile ? '30s' : '60s';
+            scrollingContainer.style.animation = `scrollNails ${animationDuration} linear infinite`;
         }, 100);
     }
 }
@@ -914,3 +917,40 @@ function ensureScrollingAnimation() {
     
     // Call loadMarkImage after a short delay to ensure DOM is ready
     setTimeout(loadMarkImage, 100);
+    
+    // Check animation support and add fallbacks
+    function checkAnimationSupport() {
+        const scrollingContainer = document.querySelector('.scrolling-nails-container');
+        if (!scrollingContainer) return;
+        
+        // Check if CSS animations are supported and not disabled
+        const animationSupported = CSS.supports('animation', 'scrollNails 1s linear infinite');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (!animationSupported || prefersReducedMotion) {
+            console.log('Animations not supported or reduced motion preferred, using fallback');
+            scrollingContainer.classList.add('no-animation');
+            
+            // Create a simple manual scroll effect as fallback
+            let scrollPosition = 0;
+            const scrollSpeed = 1;
+            
+            function manualScroll() {
+                scrollPosition -= scrollSpeed;
+                if (scrollPosition <= -scrollingContainer.scrollWidth / 2) {
+                    scrollPosition = 0;
+                }
+                scrollingContainer.style.transform = `translateX(${scrollPosition}px)`;
+                requestAnimationFrame(manualScroll);
+            }
+            
+            manualScroll();
+        } else {
+            console.log('Animations supported, using CSS animation');
+            // Ensure animation is running
+            scrollingContainer.style.animationPlayState = 'running';
+        }
+    }
+    
+    // Call animation support check
+    setTimeout(checkAnimationSupport, 500);
