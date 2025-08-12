@@ -228,7 +228,7 @@ p {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url('./assets/salon.jpg');
+    background: linear-gradient(135deg, #ff7ba7, #d45579), url('./assets/salon.jpg');
     background-size: cover;
     background-position: center 40%;
     filter: brightness(1.3);
@@ -259,7 +259,7 @@ p {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: 1;
+    z-index: 0;
     pointer-events: none;
 }
 
@@ -326,6 +326,8 @@ p {
     top: 0;
     left: 0;
     z-index: 2;
+    opacity: 1;
+    visibility: visible;
 }
 
 @keyframes scrollNails {
@@ -452,6 +454,8 @@ p {
 .hero-spacer {
     height: 100vh;
     width: 100%;
+    position: relative;
+    z-index: 0;
 }
 
 /* Section Styles */
