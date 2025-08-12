@@ -951,51 +951,53 @@ function ensureScrollingAnimation() {
         const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
         if (isMobile) {
-            console.log('Mobile device detected, using JavaScript fallback for scrolling');
-            scrollingContainer.classList.add('no-animation');
+            console.log('Mobile device detected, using CSS animation with fallback');
             
-            // Stop any existing CSS animation but preserve layout
-            scrollingContainer.style.animation = 'none';
-            scrollingContainer.style.webkitAnimation = 'none';
-            scrollingContainer.style.mozAnimation = 'none';
-            scrollingContainer.style.oAnimation = 'none';
+            // Try CSS animation first, but have JavaScript fallback ready
+            const animationSupported = CSS.supports('animation', 'scrollNails 1s linear infinite');
             
-            // Ensure the container maintains its position and doesn't break hero layout
-            scrollingContainer.style.position = 'absolute';
-            scrollingContainer.style.top = '0';
-            scrollingContainer.style.left = '0';
-            scrollingContainer.style.width = '100%';
-            scrollingContainer.style.height = '100%';
-            
-            // Create a robust mobile scrolling effect
-            let scrollPosition = 0;
-            const scrollSpeed = 1; // Slower to prevent layout issues
-            
-            function mobileScroll() {
-                scrollPosition -= scrollSpeed;
-                if (scrollPosition <= -scrollingContainer.scrollWidth / 2) {
-                    scrollPosition = 0;
-                }
-                scrollingContainer.style.transform = `translateX(${scrollPosition}px)`;
+            if (animationSupported) {
+                // Use CSS animation but ensure it's running
+                scrollingContainer.style.animationPlayState = 'running';
+                scrollingContainer.style.webkitAnimationPlayState = 'running';
                 
-                // Use requestAnimationFrame for smooth performance
-                if (scrollingContainer.classList.contains('no-animation')) {
-                    requestAnimationFrame(mobileScroll);
-                }
+                // Monitor if animation stops working
+                let lastTransform = '';
+                const checkAnimation = setInterval(() => {
+                    const currentTransform = scrollingContainer.style.transform;
+                    if (currentTransform === lastTransform && currentTransform !== '') {
+                        // Animation stopped, switch to JavaScript fallback
+                        console.log('CSS animation stopped, switching to JavaScript fallback');
+                        clearInterval(checkAnimation);
+                        startJavaScriptScrolling();
+                    }
+                    lastTransform = currentTransform;
+                }, 1000);
+                
+            } else {
+                // CSS animation not supported, use JavaScript fallback
+                startJavaScriptScrolling();
             }
             
-            // Start the mobile scrolling after a delay to ensure hero is loaded
-            setTimeout(() => {
+            function startJavaScriptScrolling() {
+                scrollingContainer.classList.add('no-animation');
+                scrollingContainer.style.animation = 'none';
+                scrollingContainer.style.webkitAnimation = 'none';
+                
+                let scrollPosition = 0;
+                const scrollSpeed = 1;
+                
+                function mobileScroll() {
+                    scrollPosition -= scrollSpeed;
+                    if (scrollPosition <= -scrollingContainer.scrollWidth / 2) {
+                        scrollPosition = 0;
+                    }
+                    scrollingContainer.style.transform = `translateX(${scrollPosition}px)`;
+                    requestAnimationFrame(mobileScroll);
+                }
+                
                 mobileScroll();
-            }, 1000);
-            
-            // Ensure images stay visible
-            const images = scrollingContainer.querySelectorAll('img');
-            images.forEach(img => {
-                img.style.opacity = '1';
-                img.style.visibility = 'visible';
-                img.style.zIndex = '2';
-            });
+            }
             
         } else {
             // Desktop: Check if CSS animations are supported
