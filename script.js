@@ -147,7 +147,7 @@ async function loadGalleryImages() {
                             id: 1,
                             title: 'Gel Nail Art',
                             description: 'Beautiful pink gel nails with floral design',
-                            image: './assets/sample nail.jpg',
+                            image: './assets/sample nail 2.jpg',
                             category: 'gel'
                         },
                         {
