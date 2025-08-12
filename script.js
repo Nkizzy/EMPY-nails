@@ -310,6 +310,10 @@ function setupAnimations() {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                // Also add the CSS class for consistency
+                if (entry.target.classList.contains('fade-in-up')) {
+                    entry.target.classList.add('animate');
+                }
             }
         });
     }, observerOptions);
@@ -643,6 +647,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ensure scrolling animation starts properly
     ensureScrollingAnimation();
     
+    // Load the mark image dynamically
+    loadMarkImage();
+    
     // Event listeners
     if (header) {
         window.addEventListener('scroll', handleHeaderScroll);
@@ -881,6 +888,29 @@ function ensureScrollingAnimation() {
     // Apply throttling to scroll events
     window.addEventListener('scroll', throttle(handleHeaderScroll, 16));
     
-
+    // Load the mark image dynamically
+    function loadMarkImage() {
+        const container = document.getElementById('mark-image-container');
+        if (container) {
+            console.log('Loading mark image dynamically...');
+            const img = document.createElement('img');
+            img.src = './assets/mark.jpeg';
+            img.alt = 'Mark';
+            img.className = 'mark-photo';
+            img.style.cssText = 'max-width: 100%; height: auto;';
+            
+            img.onload = function() {
+                console.log('Mark image loaded successfully via JavaScript');
+                container.innerHTML = '';
+                container.appendChild(img);
+            };
+            
+            img.onerror = function() {
+                console.log('Mark image failed to load via JavaScript');
+                container.innerHTML = '<p style="color: red;">Failed to load image</p>';
+            };
+        }
+    }
     
- 
+    // Call loadMarkImage after a short delay to ensure DOM is ready
+    setTimeout(loadMarkImage, 100);
