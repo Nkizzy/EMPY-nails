@@ -83,9 +83,9 @@ let galleryData = [];
 // Function to load gallery images from Gallery folder
 async function loadGalleryImages() {
     try {
-        // Look for images named image1, image2, etc. up to image20
+        // Look for images named image1, image2, etc. up to image10
         const galleryImages = [];
-        for (let i = 1; i <= 20; i++) {
+        for (let i = 1; i <= 10; i++) {
             galleryImages.push(`./assets/gallery/image${i}.jpeg`);
         }
         
@@ -507,9 +507,9 @@ async function loadScrollImages() {
         // Clear existing content
         scrollContainer.innerHTML = '';
         
-        // Look for images named image1, image2, etc. up to image20
+        // Look for images named image1, image2, etc. to image10
         const scrollImages = [];
-        for (let i = 1; i <= 20; i++) {
+        for (let i = 1; i <= 10; i++) {
             scrollImages.push(`./assets/scroll/image${i}.jpg`);
         }
         
@@ -622,8 +622,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const animatedElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .scale-in');
     animatedElements.forEach(el => observer.observe(el));
     
+    // Force scroll to top on mobile devices
+    function forceScrollToTop() {
+        // Multiple methods to ensure scroll to top works on all devices
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        
+        // Force scroll after a short delay for mobile
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        }, 100);
+        
+        // Additional mobile-specific scroll reset
+        if (window.innerWidth <= 768) {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+            }, 500);
+        }
+    }
+    
     // Always scroll to top on page load - no hash navigation
-    window.scrollTo(0, 0);
+    forceScrollToTop();
     
     // Initialize gallery
     loadGalleryImages();
@@ -879,13 +903,13 @@ function ensureScrollingAnimation() {
     // Ensure page starts at top when loaded
     window.addEventListener('load', function() {
         // Always scroll to top on page load/reload
-        window.scrollTo(0, 0);
+        forceScrollToTop();
     });
     
     // Also ensure page starts at top when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
         // Scroll to top immediately when DOM is ready
-        window.scrollTo(0, 0);
+        forceScrollToTop();
     });
 
     // Apply throttling to scroll events
@@ -930,15 +954,22 @@ function ensureScrollingAnimation() {
             console.log('Mobile device detected, using JavaScript fallback for scrolling');
             scrollingContainer.classList.add('no-animation');
             
-            // Stop any existing CSS animation
+            // Stop any existing CSS animation but preserve layout
             scrollingContainer.style.animation = 'none';
             scrollingContainer.style.webkitAnimation = 'none';
             scrollingContainer.style.mozAnimation = 'none';
             scrollingContainer.style.oAnimation = 'none';
             
+            // Ensure the container maintains its position and doesn't break hero layout
+            scrollingContainer.style.position = 'absolute';
+            scrollingContainer.style.top = '0';
+            scrollingContainer.style.left = '0';
+            scrollingContainer.style.width = '100%';
+            scrollingContainer.style.height = '100%';
+            
             // Create a robust mobile scrolling effect
             let scrollPosition = 0;
-            const scrollSpeed = 2; // Slightly faster for mobile
+            const scrollSpeed = 1; // Slower to prevent layout issues
             
             function mobileScroll() {
                 scrollPosition -= scrollSpeed;
@@ -953,8 +984,10 @@ function ensureScrollingAnimation() {
                 }
             }
             
-            // Start the mobile scrolling
-            mobileScroll();
+            // Start the mobile scrolling after a delay to ensure hero is loaded
+            setTimeout(() => {
+                mobileScroll();
+            }, 1000);
             
             // Ensure images stay visible
             const images = scrollingContainer.querySelectorAll('img');

@@ -339,7 +339,7 @@ p {
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 10;
     max-width: 600px;
     padding: 1.5rem 2rem;
     /* From https://css.glass */
@@ -1490,6 +1490,8 @@ section {
         width: 100vw;
         max-width: 100vw;
         overflow: hidden;
+        position: absolute !important;
+        z-index: 1 !important;
     }
     
     .scrolling-nails-container {
