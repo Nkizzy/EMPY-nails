@@ -267,15 +267,15 @@ p {
 .scrolling-nails-container {
     display: flex;
     gap: 3rem;
-    animation: scrollNails 90s linear infinite;
+    /* animation: scrollNails 90s linear infinite; */
     width: max-content;
     align-items: center;
     height: 100%;
     will-change: transform;
     position: relative;
-    -webkit-animation: scrollNails 90s linear infinite;
-    -moz-animation: scrollNails 90s linear infinite;
-    -o-animation: scrollNails 90s linear infinite;
+    /* -webkit-animation: scrollNails 90s linear infinite; */
+    /* -moz-animation: scrollNails 90s linear infinite; */
+    /* -o-animation: scrollNails 90s linear infinite; */
 }
 
 .scrolling-nail {
@@ -1484,8 +1484,12 @@ section {
     }
     
     .hero-content {
-        margin-top: -40vh;
+        margin-top: 0;
         z-index: 10;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
     
     .scrolling-nails {
@@ -1496,12 +1500,12 @@ section {
     }
     
     .scrolling-nails-container {
-        animation: scrollNails 90s linear infinite;
-        -webkit-animation: scrollNails 90s linear infinite;
-        -moz-animation: scrollNails 90s linear infinite;
-        -o-animation: scrollNails 90s linear infinite;
-        animation-play-state: running;
-        -webkit-animation-play-state: running;
+        /* animation: scrollNails 90s linear infinite; */
+        /* -webkit-animation: scrollNails 90s linear infinite; */
+        /* -moz-animation: scrollNails 90s linear infinite; */
+        /* -o-animation: scrollNails 90s linear infinite; */
+        /* animation-play-state: running; */
+        /* -webkit-animation-play-state: running; */
     }
     
     /* Fallback for when animations are disabled */
