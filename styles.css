@@ -340,6 +340,14 @@ p {
     }
 }
 
+@keyframes scrollNailsMobile {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
 
 
 .hero-content {
@@ -1434,68 +1442,27 @@ section {
         overflow-x: hidden;
         max-width: 100vw;
         position: relative;
-        height: auto !important;
-        overflow-y: visible !important;
     }
     
     .container {
         max-width: 100vw;
         overflow-x: hidden;
-        height: auto !important;
-        overflow-y: visible !important;
     }
     
     /* Fix section scrolling issues on mobile */
     section {
-        height: auto !important;
-        max-height: none !important;
-        min-height: auto !important;
-        overflow: visible !important;
+        height: auto;
+        max-height: none;
     }
     
     .services, .gallery, .testimonials, .location {
-        height: auto !important;
-        max-height: none !important;
-        min-height: auto !important;
-        overflow: visible !important;
+        height: auto;
+        max-height: none;
     }
     
     .services-grid, .gallery-grid, .testimonials-grid, .location-content {
-        height: auto !important;
-        max-height: none !important;
-        min-height: auto !important;
-        overflow: visible !important;
-    }
-    
-    /* Ensure all content flows naturally on mobile */
-    .about-content, .contact-content {
-        height: auto !important;
-        max-height: none !important;
-        overflow: visible !important;
-    }
-    
-    /* Fix specific section scrolling issues */
-    .about, .services, .gallery, .testimonials, .location, .contact {
-        height: auto !important;
-        max-height: none !important;
-        min-height: auto !important;
-        overflow: visible !important;
-        position: relative !important;
-    }
-    
-    /* Fix grid layouts on mobile */
-    .services-grid, .gallery-grid, .testimonials-grid {
-        height: auto !important;
-        max-height: none !important;
-        overflow: visible !important;
-        display: grid !important;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-    }
-    
-    /* Ensure proper mobile spacing */
-    .section-header, .menu-header {
-        margin-bottom: 2rem !important;
-        padding: 0 !important;
+        height: auto;
+        max-height: none;
     }
     .nav-menu {
         position: fixed;
@@ -1582,9 +1549,6 @@ section {
         max-width: 100%;
         overflow: hidden;
         z-index: 50;
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: block !important;
     }
     
     .scrolling-nail {
@@ -1596,18 +1560,15 @@ section {
     .scrolling-nail img {
         min-width: 180px;
         min-height: 180px;
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: block !important;
     }
     
     .scrolling-nails-container {
-        animation: scrollNails 60s linear infinite !important;
-        -webkit-animation: scrollNails 60s linear infinite !important;
-        -moz-animation: scrollNails 60s linear infinite !important;
-        -o-animation: scrollNails 60s linear infinite !important;
-        animation-play-state: running !important;
-        -webkit-animation-play-state: running !important;
+        animation: scrollNailsMobile 60s linear infinite;
+        -webkit-animation: scrollNailsMobile 60s linear infinite;
+        -moz-animation: scrollNailsMobile 60s linear infinite;
+        -o-animation: scrollNailsMobile 60s linear infinite;
+        animation-play-state: running;
+        -webkit-animation-play-state: running;
     }
     
     /* Fallback for when animations are disabled */
