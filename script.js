@@ -850,10 +850,7 @@ function throttle(func, limit) {
 function ensureScrollingAnimation() {
     const scrollingContainer = document.querySelector('.scrolling-nails-container');
     if (scrollingContainer) {
-        // Force a reflow to ensure animation starts
-        scrollingContainer.style.animation = 'none';
-        scrollingContainer.offsetHeight; // Trigger reflow
-        scrollingContainer.style.animation = 'scrollNails 90s linear infinite';
+        // Let CSS handle the animation - don't override with JavaScript
         
         // Also ensure images are loaded and prioritized
         const images = scrollingContainer.querySelectorAll('img');
@@ -878,16 +875,8 @@ function ensureScrollingAnimation() {
             img.style.zIndex = '2';
         });
         
-        // Force animation restart after a short delay
-        setTimeout(() => {
-            scrollingContainer.style.animation = 'none';
-            scrollingContainer.offsetHeight;
-            // Use mobile-specific animation for mobile devices
-            const isMobile = window.innerWidth <= 768;
-            const animationName = isMobile ? 'scrollNailsMobile' : 'scrollNails';
-            const animationDuration = isMobile ? '60s' : '90s';
-            scrollingContainer.style.animation = `${animationName} ${animationDuration} linear infinite`;
-        }, 100);
+        // Let CSS handle the animation timing
+        // Don't override CSS animations with JavaScript
     }
 }
 
