@@ -501,8 +501,8 @@ function addCSSAnimations() {
 // Function to load images from scroll folder
 async function loadScrollImages() {
     try {
-        const scrollContainer = document.querySelector('.scrolling-nails-container');
-        if (!scrollContainer) return;
+        // const scrollContainer = document.querySelector('.scrolling-nails-container');
+        // if (!scrollContainer) return;
         
         // Clear existing content
         scrollContainer.innerHTML = '';
@@ -652,8 +652,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize gallery
     loadGalleryImages();
     
-    // Load scroll images
-    loadScrollImages();
+    // Load scroll images - Temporarily disabled
+    // loadScrollImages();
     
     // Setup animations
     setupAnimations();
@@ -846,48 +846,10 @@ function throttle(func, limit) {
     }
 }
 
-// Ensure scrolling animation starts properly
+// Scrolling animation temporarily disabled
 function ensureScrollingAnimation() {
-    const scrollingContainer = document.querySelector('.scrolling-nails-container');
-    if (scrollingContainer) {
-        // Force a reflow to ensure animation starts
-        scrollingContainer.style.animation = 'none';
-        scrollingContainer.offsetHeight; // Trigger reflow
-        // scrollingContainer.style.animation = 'scrollNails 90s linear infinite';
-        
-        // Also ensure images are loaded and prioritized
-        const images = scrollingContainer.querySelectorAll('img');
-        images.forEach(img => {
-            // Force image to load
-            if (img.src) {
-                const newImg = new Image();
-                newImg.onload = () => {
-                    img.style.opacity = '1';
-                    img.style.visibility = 'visible';
-                };
-                newImg.onerror = () => {
-                    
-                    img.style.opacity = '0';
-                };
-                newImg.src = img.src;
-            }
-            
-            // Ensure image is visible
-            img.style.opacity = '1';
-            img.style.visibility = 'visible';
-            img.style.zIndex = '2';
-        });
-        
-        // Force animation restart after a short delay
-        setTimeout(() => {
-            scrollingContainer.style.animation = 'none';
-            scrollingContainer.offsetHeight;
-            // Temporarily disabled scrolling animation
-            // const isMobile = window.innerWidth <= 768;
-            // const animationDuration = '90s';
-            // scrollingContainer.style.animation = `scrollNails ${animationDuration} linear infinite`;
-        }, 100);
-    }
+    // Function disabled - scrolling nails are hidden
+    return;
 }
 
 
@@ -942,10 +904,10 @@ function ensureScrollingAnimation() {
     // Call loadMarkImage after a short delay to ensure DOM is ready
     setTimeout(loadMarkImage, 100);
     
-    // Check animation support and add fallbacks
+    // Check animation support and add fallbacks - Temporarily disabled
     function checkAnimationSupport() {
-        const scrollingContainer = document.querySelector('.scrolling-nails-container');
-        if (!scrollingContainer) return;
+        // Function disabled - scrolling nails are hidden
+        return;
         
         // Force mobile fallback for better reliability
         const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -1030,5 +992,5 @@ function ensureScrollingAnimation() {
         }
     }
     
-    // Call animation support check
-    setTimeout(checkAnimationSupport, 500);
+    // Animation support check temporarily disabled
+    // setTimeout(checkAnimationSupport, 500);

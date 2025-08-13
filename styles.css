@@ -252,7 +252,7 @@ p {
     background: transparent;
 }
 
-/* Scrolling nail images */
+/* Scrolling nail images - Temporarily hidden */
 .scrolling-nails {
     position: absolute;
     top: 20px;
@@ -262,6 +262,9 @@ p {
     overflow: hidden;
     z-index: 50;
     pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
 }
 
 .scrolling-nails-container {
@@ -1492,11 +1495,18 @@ section {
         transform: translate(-50%, -50%);
     }
     
+    .hero {
+        background-attachment: scroll;
+    }
+    
     .scrolling-nails {
         top: 120px;
         width: 100%;
         max-width: 100%;
         overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        display: none;
     }
     
     .scrolling-nails-container {
