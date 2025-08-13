@@ -252,7 +252,7 @@ p {
     background: transparent;
 }
 
-/* Scrolling nail images - Temporarily hidden */
+/* Scrolling nail images */
 .scrolling-nails {
     position: absolute;
     top: 20px;
@@ -262,23 +262,20 @@ p {
     overflow: hidden;
     z-index: 50;
     pointer-events: none;
-    opacity: 0;
-    visibility: hidden;
-    display: none;
 }
 
 .scrolling-nails-container {
     display: flex;
     gap: 3rem;
-    /* animation: scrollNails 90s linear infinite; */
+    animation: scrollNails 90s linear infinite;
     width: max-content;
     align-items: center;
     height: 100%;
     will-change: transform;
     position: relative;
-    /* -webkit-animation: scrollNails 90s linear infinite; */
-    /* -moz-animation: scrollNails 90s linear infinite; */
-    /* -o-animation: scrollNails 90s linear infinite; */
+    -webkit-animation: scrollNails 90s linear infinite;
+    -moz-animation: scrollNails 90s linear infinite;
+    -o-animation: scrollNails 90s linear infinite;
 }
 
 .scrolling-nail {
