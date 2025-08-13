@@ -267,15 +267,15 @@ p {
 .scrolling-nails-container {
     display: flex;
     gap: 3rem;
-    animation: scrollNails 120s linear infinite;
+    animation: scrollNails 90s linear infinite;
     width: max-content;
     align-items: center;
     height: 100%;
     will-change: transform;
     position: relative;
-    -webkit-animation: scrollNails 120s linear infinite;
-    -moz-animation: scrollNails 120s linear infinite;
-    -o-animation: scrollNails 120s linear infinite;
+    -webkit-animation: scrollNails 90s linear infinite;
+    -moz-animation: scrollNails 90s linear infinite;
+    -o-animation: scrollNails 90s linear infinite;
 }
 
 .scrolling-nail {
@@ -1496,10 +1496,10 @@ section {
     }
     
     .scrolling-nails-container {
-        animation: scrollNails 60s linear infinite;
-        -webkit-animation: scrollNails 60s linear infinite;
-        -moz-animation: scrollNails 60s linear infinite;
-        -o-animation: scrollNails 60s linear infinite;
+        animation: scrollNails 90s linear infinite;
+        -webkit-animation: scrollNails 90s linear infinite;
+        -moz-animation: scrollNails 90s linear infinite;
+        -o-animation: scrollNails 90s linear infinite;
         animation-play-state: running;
         -webkit-animation-play-state: running;
     }

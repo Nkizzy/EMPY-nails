@@ -853,7 +853,7 @@ function ensureScrollingAnimation() {
         // Force a reflow to ensure animation starts
         scrollingContainer.style.animation = 'none';
         scrollingContainer.offsetHeight; // Trigger reflow
-        scrollingContainer.style.animation = 'scrollNails 120s linear infinite';
+        scrollingContainer.style.animation = 'scrollNails 90s linear infinite';
         
         // Also ensure images are loaded and prioritized
         const images = scrollingContainer.querySelectorAll('img');
@@ -882,9 +882,9 @@ function ensureScrollingAnimation() {
         setTimeout(() => {
             scrollingContainer.style.animation = 'none';
             scrollingContainer.offsetHeight;
-            // Use faster timing for mobile
+            // Use same timing for both mobile and desktop
             const isMobile = window.innerWidth <= 768;
-            const animationDuration = isMobile ? '30s' : '60s';
+            const animationDuration = '90s';
             scrollingContainer.style.animation = `scrollNails ${animationDuration} linear infinite`;
         }, 100);
     }
