@@ -882,10 +882,11 @@ function ensureScrollingAnimation() {
         setTimeout(() => {
             scrollingContainer.style.animation = 'none';
             scrollingContainer.offsetHeight;
-            // Use same timing for both mobile and desktop
+            // Use mobile-specific animation for mobile devices
             const isMobile = window.innerWidth <= 768;
-            const animationDuration = '90s';
-            scrollingContainer.style.animation = `scrollNails ${animationDuration} linear infinite`;
+            const animationName = isMobile ? 'scrollNailsMobile' : 'scrollNails';
+            const animationDuration = isMobile ? '60s' : '90s';
+            scrollingContainer.style.animation = `${animationName} ${animationDuration} linear infinite`;
         }, 100);
     }
 }
@@ -954,7 +955,7 @@ function ensureScrollingAnimation() {
             console.log('Mobile device detected, using CSS animation with fallback');
             
             // Try CSS animation first, but have JavaScript fallback ready
-            const animationSupported = CSS.supports('animation', 'scrollNails 1s linear infinite');
+            const animationSupported = CSS.supports('animation', 'scrollNailsMobile 1s linear infinite');
             
             if (animationSupported) {
                 // Use CSS animation but ensure it's running
