@@ -1,0 +1,5 @@
+[33m5640186[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m Restore working mobile layout and scrolling: undo problematic CSS overrides, restore mobile section heights, fix mobile scrolling animation with separate keyframes
+[33med99f1a[m Fix mobile scrolling images and section scrolling issues: simplify animation approach, remove JavaScript conflicts, fix mobile section heights and overflow, ensure proper mobile scrolling behavior
+[33mba7a167[m Fix mobile scrolling issues and clean up footer: remove Twitter/Pinterest icons from services page, fix mobile scrolling animation with separate keyframes, adjust mobile hero positioning and nail sizing
+[33m16c8425[m Fix footer social links and implement mobile scrolling images: remove weird Instagram icon, add clickable social links in footer and visit us section, enable mobile scrolling nails with adjusted hero positioning
+[33m25e8652[m Add gift certificate information: hero section below gallery button and services page banner, remove emojis, narrow services container

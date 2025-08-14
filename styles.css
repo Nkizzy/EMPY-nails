@@ -1516,7 +1516,7 @@ section {
     }
 
     .hero-title {
-        font-size: 3.5rem;
+        font-size: 3.5rem !important;
     }
 
     .hero-subtitle {
@@ -1532,7 +1532,7 @@ section {
         margin-top: 0;
         z-index: 10;
         position: absolute;
-        top: 25%;
+        top: 35%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 90%;
@@ -1544,35 +1544,19 @@ section {
     }
     
     .scrolling-nails {
-        top: 100px;
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-        z-index: 50;
+        display: none;
     }
     
     .scrolling-nail {
-        width: 180px;
-        height: 180px;
-        margin-right: 1rem;
+        display: none;
     }
     
     .scrolling-nail img {
-        min-width: 180px;
-        min-height: 180px;
+        display: none;
     }
     
     .scrolling-nails-container {
-        animation: scrollNailsMobile 60s linear infinite;
-        -webkit-animation: scrollNailsMobile 60s linear infinite;
-        -moz-animation: scrollNailsMobile 60s linear infinite;
-        -o-animation: scrollNailsMobile 60s linear infinite;
-        animation-play-state: running;
-        -webkit-animation-play-state: running;
-        /* Ensure animation persists on mobile */
-        will-change: transform;
-        transform: translateZ(0);
-        -webkit-transform: translateZ(0);
+        display: none;
     }
     
     /* Fallback for when animations are disabled */
