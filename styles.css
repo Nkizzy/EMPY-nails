@@ -9,6 +9,9 @@ html {
     scroll-behavior: smooth;
     overflow-x: hidden;
     max-width: 100vw;
+    position: relative;
+    left: 0;
+    right: 0;
 }
 
 body {
@@ -18,12 +21,15 @@ body {
     overflow-x: hidden;
     max-width: 100vw;
     position: relative;
+    left: 0;
+    right: 0;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
 }
 
 /* Typography */
@@ -87,6 +93,36 @@ p {
     background: white;
     color: #333;
     transform: translateY(-2px);
+}
+
+/* Ensure page content is centered on load */
+.page-wrapper {
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Force sections to maintain visibility */
+section {
+    scroll-snap-align: start;
+    /* Ensure content is always visible */
+    visibility: visible;
+    opacity: 1;
+    /* Gentle overflow control */
+    overflow: visible;
+}
+
+/* Prevent scroll contexts from forming in sections */
+section {
+    transform: translateZ(0);
+    will-change: auto;
+    /* Simple overflow control to prevent scroll contexts */
+    overflow: visible;
+    /* Ensure content is always accessible */
+    min-height: fit-content;
+    display: block;
 }
 
 /* Header Navigation */
@@ -509,8 +545,13 @@ p {
 section {
     padding: 5rem 0;
     position: relative;
-    z-index: 10;
     background: white;
+    z-index: 1;
+    /* Ensure content fits without creating scroll contexts */
+    box-sizing: border-box;
+    /* Prevent scroll contexts during animations */
+    overflow: visible;
+    min-height: fit-content;
 }
 
 .section-header {
@@ -1336,33 +1377,33 @@ section {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
     }
 }
 
 @keyframes slideInLeft {
     from {
         opacity: 0;
-        transform: translateX(-50px);
+        transform: scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: scale(1);
     }
 }
 
 @keyframes slideInRight {
     from {
         opacity: 0;
-        transform: translateX(50px);
+        transform: scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: scale(1);
     }
 }
 
@@ -1380,37 +1421,39 @@ section {
 /* Animation classes */
 .fade-in-up {
     opacity: 0;
-    transform: translateY(30px);
+    transform: scale(0.95);
     transition: all 0.6s ease;
     will-change: opacity, transform;
+    /* Prevent scroll contexts during animation */
+    overflow: visible;
 }
 
 .fade-in-up.animate,
 .fade-in-up[style*="opacity: 1"] {
     opacity: 1 !important;
-    transform: translateY(0) !important;
+    transform: scale(1) !important;
 }
 
 .slide-in-left {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: scale(0.95);
     transition: all 0.6s ease;
 }
 
 .slide-in-left.animate {
     opacity: 1;
-    transform: translateX(0);
+    transform: scale(1);
 }
 
 .slide-in-right {
     opacity: 0;
-    transform: translateX(50px);
+    transform: scale(0.95);
     transition: all 0.6s ease;
 }
 
 .slide-in-right.animate {
     opacity: 1;
-    transform: translateX(0);
+    transform: scale(1);
 }
 
 .scale-in {
@@ -1439,50 +1482,46 @@ section {
 /* Responsive Design */
 @media (max-width: 768px) {
     html, body {
-        overflow-x: visible;
+        overflow-x: hidden;
         max-width: 100vw;
         position: relative;
     }
     
     .container {
         max-width: 100vw;
-        overflow-x: visible;
+        overflow-x: hidden;
     }
     
     /* Fix section scrolling issues on mobile */
     section {
         height: auto;
         max-height: none;
-        overflow: visible;
     }
     
     .services, .gallery, .testimonials, .location {
         height: auto;
         max-height: none;
-        overflow: visible;
     }
     
     .services-grid, .gallery-grid, .testimonials-grid, .location-content {
         height: auto;
         max-height: none;
-        overflow: visible;
     }
     
     /* Fix hero scrolling on mobile */
     .hero {
-        position: relative;
+        position: fixed;
         height: 100vh;
         background-attachment: scroll;
     }
     
     .hero-spacer {
-        height: 0;
-        display: none;
+        height: 100vh;
     }
     .nav-menu {
         position: fixed;
-        left: -100%;
-        top: 70px;
+        left: 0;
+        top: -100vh;
         flex-direction: column;
         background-color: white;
         width: 100%;
@@ -1491,9 +1530,11 @@ section {
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0;
     }
+    
+
 
     .nav-menu.active {
-        left: 0;
+        top: 70px;
     }
 
     .nav-toggle {
@@ -1516,6 +1557,35 @@ section {
     
     .nav-logo {
         padding-left: 1rem;
+    }
+    
+    /* Mobile social media button styling */
+    .nav-social-btn {
+        width: auto;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        display: inline-block;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        color: white;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .nav-instagram {
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        color: white;
+    }
+    
+    .nav-facebook {
+        background: #1877f2;
+        color: white;
+    }
+    
+    .nav-social-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
     .nav-toggle.active .bar:nth-child(2) {

@@ -322,7 +322,7 @@ function setupAnimations() {
     const animateElements = document.querySelectorAll('.service-card, .testimonial-card, .stat, .hours-day, .contact-item');
     animateElements.forEach(el => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
+        el.style.transform = 'scale(0.95)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
@@ -379,22 +379,22 @@ function addCSSAnimations() {
     style.textContent = `
         @keyframes slideInRight {
             from {
-                transform: translateX(100%);
+                transform: scale(0.95);
                 opacity: 0;
             }
             to {
-                transform: translateX(0);
+                transform: scale(1);
                 opacity: 1;
             }
         }
         
         @keyframes slideOutRight {
             from {
-                transform: translateX(0);
+                transform: scale(1);
                 opacity: 1;
             }
             to {
-                transform: translateX(100%);
+                transform: scale(0.95);
                 opacity: 0;
             }
         }
@@ -701,6 +701,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navMenu && navMenu.classList.contains('active')) {
+            // Check if click is outside the menu and not on the toggle button
+            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        }
+    });
     
     if (contactForm) {
         contactForm.addEventListener('submit', handleContactForm);
