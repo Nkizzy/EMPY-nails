@@ -342,10 +342,10 @@ p {
 
 @keyframes scrollNailsMobile {
     0% {
-        transform: translateX(0);
+        transform: translateX(0) translateZ(0);
     }
     100% {
-        transform: translateX(-50%);
+        transform: translateX(-50%) translateZ(0);
     }
 }
 
@@ -1569,6 +1569,10 @@ section {
         -o-animation: scrollNailsMobile 60s linear infinite;
         animation-play-state: running;
         -webkit-animation-play-state: running;
+        /* Ensure animation persists on mobile */
+        will-change: transform;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
     }
     
     /* Fallback for when animations are disabled */
