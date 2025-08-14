@@ -1439,30 +1439,45 @@ section {
 /* Responsive Design */
 @media (max-width: 768px) {
     html, body {
-        overflow-x: hidden;
+        overflow-x: visible;
         max-width: 100vw;
         position: relative;
     }
     
     .container {
         max-width: 100vw;
-        overflow-x: hidden;
+        overflow-x: visible;
     }
     
     /* Fix section scrolling issues on mobile */
     section {
         height: auto;
         max-height: none;
+        overflow: visible;
     }
     
     .services, .gallery, .testimonials, .location {
         height: auto;
         max-height: none;
+        overflow: visible;
     }
     
     .services-grid, .gallery-grid, .testimonials-grid, .location-content {
         height: auto;
         max-height: none;
+        overflow: visible;
+    }
+    
+    /* Fix hero scrolling on mobile */
+    .hero {
+        position: relative;
+        height: 100vh;
+        background-attachment: scroll;
+    }
+    
+    .hero-spacer {
+        height: 0;
+        display: none;
     }
     .nav-menu {
         position: fixed;
