@@ -8,6 +8,13 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- Services Page -->
+  <url>
+    <loc>https://empynails.com/services.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Add other pages here as you build them -->
   <!-- Example:
   <url>
