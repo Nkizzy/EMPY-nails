@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://empynails.com/sitemap.xml
