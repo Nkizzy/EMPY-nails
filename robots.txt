@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# Sitemap location
 Sitemap: https://empynails.com/sitemap.xml
+
+# Prevent duplicate content issues
+Disallow: /*?*
+Disallow: /*&*
