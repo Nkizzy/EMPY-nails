@@ -5,8 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Services - EMPY Nails</title>
     <meta name="description" content="Discover our complete nail services including spa pedicures, manicures, gel nails, acrylics, and luxury nail art. View prices and book your appointment at EMPY Nails.">
-    <link rel="canonical" href="https://empynails.com/services.html">
+    <link rel="canonical" href="https://empynails.com/services">
     <link rel="icon" type="image/jpeg" href="./assets/logo.jpeg">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="author" content="EMPY Nails">
+    <meta name="keywords" content="nail services, spa pedicure, manicure, gel nails, acrylic nails, nail art, Rochester NY, nail salon services, nail prices">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="All Services - EMPY Nails">
+    <meta property="og:description" content="Complete list of nail services including spa pedicures, manicures, gel nails, acrylics, and luxury nail art. View prices and book your appointment.">
+    <meta property="og:url" content="https://empynails.com/services">
+    <meta property="og:image" content="https://empynails.com/assets/logo.jpeg">
+    <meta property="og:site_name" content="EMPY Nails">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="All Services - EMPY Nails">
+    <meta name="twitter:description" content="Complete list of nail services with prices. Spa pedicures, manicures, gel nails, and more.">
+    <meta name="twitter:image" content="https://empynails.com/assets/logo.jpeg">
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -21,22 +43,22 @@
             </div>
             <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="/" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
                     <a href="#services" class="nav-link">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html#gallery" class="nav-link">Gallery</a>
+                    <a href="/#gallery" class="nav-link">Gallery</a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html#testimonials" class="nav-link">Reviews</a>
+                    <a href="/#testimonials" class="nav-link">Reviews</a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html#location" class="nav-link">Location</a>
+                    <a href="/#location" class="nav-link">Location</a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html#contact" class="nav-link">Contact</a>
+                    <a href="/#contact" class="nav-link">Contact</a>
                 </li>
             </ul>
             <div class="nav-social">
@@ -69,7 +91,7 @@
             </div>
 
             <!-- Spa Pedicure Details -->
-            <div class="menu-section">
+            <div class="menu-section" id="spa-pedicure">
                 <h2>Spa Pedicure Details</h2>
                 <div class="spa-details">
                     <div class="spa-item">
@@ -96,7 +118,7 @@
             </div>
 
             <!-- Manicure Services -->
-            <div class="menu-section">
+            <div class="menu-section" id="manicure">
                 <h2>Manicure Services</h2>
                 <div class="menu-items">
                     <div class="menu-item">
@@ -139,7 +161,7 @@
             </div>
 
             <!-- New Set Services -->
-            <div class="menu-section">
+            <div class="menu-section" id="new-set">
                 <h2>New Set Services</h2>
                 <div class="menu-items">
                     <div class="menu-item">
@@ -178,7 +200,7 @@
             </div>
 
             <!-- Combination Services -->
-            <div class="menu-section">
+            <div class="menu-section" id="combination">
                 <h2>Combination Services</h2>
                 <div class="menu-items">
                     <div class="menu-item">
@@ -193,7 +215,7 @@
             </div>
 
             <!-- Massage Services -->
-            <div class="menu-section">
+            <div class="menu-section" id="massage">
                 <h2>Massage Services</h2>
                 <div class="menu-items">
                     <div class="menu-item">
@@ -300,11 +322,11 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html#home">Home</a></li>
-                        <li><a href="index.html#gallery">Gallery</a></li>
-                        <li><a href="index.html#testimonials">Reviews</a></li>
-                        <li><a href="index.html#hours">Hours</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="/#home">Home</a></li>
+                        <li><a href="/#gallery">Gallery</a></li>
+                        <li><a href="/#testimonials">Reviews</a></li>
+                        <li><a href="/#hours">Hours</a></li>
+                        <li><a href="/#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -322,5 +344,97 @@
     </footer>
 
     <script src="script.js"></script>
+    
+    <!-- Schema.org Structured Data for Services Page -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemPage",
+        "name": "All Services - EMPY Nails",
+        "description": "Complete list of nail services including spa pedicures, manicures, gel nails, acrylics, and luxury nail art.",
+        "url": "https://empynails.com/services",
+        "mainEntity": {
+            "@type": "NailSalon",
+            "name": "EMPY Nails",
+            "description": "Luxury nail salon in Rochester, NY offering premium nail services.",
+            "url": "https://empynails.com",
+            "telephone": "+15852705940",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "2298 Monroe Ave",
+                "addressLocality": "Rochester",
+                "addressRegion": "NY",
+                "postalCode": "14618",
+                "addressCountry": "US"
+            },
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Nail Services Menu",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Empy Spa Pedicure",
+                            "description": "Contains a nutrient rich blend of pure essential oils to sweep away dead skin cells and clear congested pores.",
+                            "price": "50",
+                            "priceCurrency": "USD"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Organic Spa Pedicure",
+                            "description": "Fruit extract is a rich natural moisturizer that deeply hydrates and nourishes the skin.",
+                            "price": "60",
+                            "priceCurrency": "USD"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Deluxe Spa Pedicure",
+                            "description": "Soak your feet in warm jelly to soften skin, then exfoliate with vanilla sugar scrub.",
+                            "price": "70",
+                            "priceCurrency": "USD"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Royal Spa Pedicure",
+                            "description": "Gold Spa treatment inspired by ancient Egyptian wisdom with warm wax wrap and massage.",
+                            "price": "90",
+                            "priceCurrency": "USD"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "GelX Extensions",
+                            "description": "Our signature gel extension system gives you beautiful, natural-looking nails that last.",
+                            "price": "65",
+                            "priceCurrency": "USD"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Builder Gel",
+                            "description": "Transform your natural nails with our builder gel system for strength and protection.",
+                            "price": "65",
+                            "priceCurrency": "USD"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+    </script>
 </body>
 </html> 

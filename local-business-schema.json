@@ -1,0 +1,111 @@
+{
+  "@context": "https://schema.org",
+  "@type": "NailSalon",
+  "name": "EMPY Nails",
+  "description": "Luxury nail salon in Rochester, NY offering premium gel nails, acrylics, nail art, spa pedicures, and professional nail services.",
+  "url": "https://empynails.com",
+  "telephone": "+15852705940",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2298 Monroe Ave",
+    "addressLocality": "Rochester",
+    "addressRegion": "NY",
+    "postalCode": "14618",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.1207,
+    "longitude": -77.5582
+  },
+  "openingHours": [
+    "Mo-Sa 09:30-19:30",
+    "Su 10:00-18:00"
+  ],
+  "priceRange": "$$",
+  "paymentAccepted": ["Cash", "Credit Card"],
+  "currenciesAccepted": "USD",
+  "image": "https://empynails.com/assets/logo.jpeg",
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=100083194517394",
+    "https://www.instagram.com/empynails/"
+  ],
+  "serviceArea": {
+    "@type": "City",
+    "name": "Rochester"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Nail Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Empy Spa Pedicure",
+          "description": "Contains a nutrient rich blend of pure essential oils to sweep away dead skin cells and clear congested pores.",
+          "price": "50",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Organic Spa Pedicure",
+          "description": "Fruit extract is a rich natural moisturizer that deeply hydrates and nourishes the skin.",
+          "price": "60",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Deluxe Spa Pedicure",
+          "description": "Soak your feet in warm jelly to soften skin, then exfoliate with vanilla sugar scrub.",
+          "price": "70",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Royal Spa Pedicure",
+          "description": "Gold Spa treatment inspired by ancient Egyptian wisdom with warm wax wrap and massage.",
+          "price": "90",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "GelX Extensions",
+          "description": "Our signature gel extension system gives you beautiful, natural-looking nails that last.",
+          "price": "65",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Builder Gel",
+          "description": "Transform your natural nails with our builder gel system for strength and protection.",
+          "price": "65",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "50",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+

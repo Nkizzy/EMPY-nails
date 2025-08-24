@@ -1,9 +1,24 @@
 User-agent: *
 Allow: /
 
+# Disallow duplicate content
+Disallow: /index.html
+Disallow: /services.html
+
+# Allow the canonical versions
+Allow: /
+Allow: /services
+
 # Sitemap location
 Sitemap: https://empynails.com/sitemap.xml
 
-# Prevent duplicate content issues
-Disallow: /*?*
-Disallow: /*&*
+# Crawl delay (optional)
+Crawl-delay: 1
+
+# Additional crawling instructions
+Allow: /assets/
+Allow: /#services
+Allow: /#gallery
+Allow: /#testimonials
+Allow: /#location
+Allow: /#contact
